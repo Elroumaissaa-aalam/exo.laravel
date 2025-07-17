@@ -26,7 +26,7 @@
                         @foreach ($products as $product)
                             <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
                                 @if ($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover">
+                                    <img src="" alt="" class="w-full h-48 object-cover">
                                 @else
                                     <div class="w-full h-48 bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
                                         <span class="text-gray-500 dark:text-gray-400">Pas d'image</span>
@@ -34,14 +34,12 @@
                                 @endif
                                 
                                 <div class="p-4">
-                                    <h3 class="text-lg font-semibold mb-2">{{ $product->name }}</h3>
-                                    <p class="text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{{ $product->description }}</p>
+                                    <h3 class="text-lg font-semibold mb-2">test name</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">test</p>
                                     
                                     <div class="flex justify-between items-center mb-4">
-                                        <span class="text-lg font-bold">{{ number_format($product->price, 2) }} €</span>
-                                        <span class="text-sm {{ $product->stock > 10 ? 'text-green-500' : 'text-orange-500' }}">
-                                            Stock: {{ $product->stock }}
-                                        </span>
+                                        <span class="text-lg font-bold">480 €</span>
+                                      
                                     </div>
                                     
                                     @auth
@@ -49,7 +47,7 @@
                                             @if($product->stock > 0)
                                                 <form action="{{ route('cart.add') }}" method="POST" class="flex items-center justify-between">
                                                     @csrf
-                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="product_id" >
                                                     <div class="flex items-center">
                                                         <label for="quantity-{{ $product->id }}" class="sr-only">Quantité</label>
                                                         <input 
@@ -72,19 +70,13 @@
                                         @endrole
                                     @endauth
                                     
-                                    @guest
-                                        <p class="text-center py-2">
-                                            <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Connectez-vous</a> pour acheter
-                                        </p>
-                                    @endguest
+                                
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     
-                    <div class="mt-6">
-                        {{ $products->links() }}
-                    </div>
+                 
                 </div>
             </div>
         </div>
